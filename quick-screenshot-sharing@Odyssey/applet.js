@@ -2,7 +2,7 @@ const Applet = imports.ui.applet;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Lang = imports.lang;
-const UUID = "quick-capture-sharing@Odyssey";
+const UUID = "quick-screenshot-sharing@Odyssey";
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -33,9 +33,12 @@ MyApplet.prototype = {
     _onIconClickEvent: function(actor, event) {
         if (this._applet_enabled) {
             try {
-                const appletPath = imports.ui.appletManager.appletMeta[UUID].path;
-                const scriptFile = `${appletPath}/kappalol`;
-                GLib.spawn_command_line_async(scriptFile);
+                if (event.get_button() === 1)
+                {
+                    const appletPath = imports.ui.appletManager.appletMeta[UUID].path;
+                    const scriptFile = `${appletPath}/kappalol`;
+                    GLib.spawn_command_line_async(scriptFile);
+                }
             }
             catch (e) {
                 global.logError(e);            

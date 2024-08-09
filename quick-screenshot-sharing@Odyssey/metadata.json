@@ -1,0 +1,7 @@
+{
+    "uuid": "quick-screenshot-sharing@Odyssey",
+    "name": "Quick screenshot sharing",
+    "description": "Make a screenshot, upload it and share the link from your clipboard.\nIt will also be saved in ~/Pictures.\nThe packages 'xdg-user-dir', 'gnome-screenshot', 'jq' and 'xclip' must be installed.",
+    "author": "Odyssey",
+    "last-edited": 1720142418
+}

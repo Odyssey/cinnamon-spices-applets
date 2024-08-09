@@ -12,12 +12,13 @@ gnome-screenshot -a -f $FILEPATH
 # Upload the file using curl
 RESPONSE=$(curl -s -F "file=@$FILEPATH" "https://kappa.lol/api/upload")
 
-# Extract the full link from the JSON response
-LINK="https://kappa.lol/$(echo $RESPONSE | awk -F'"' '/"link":/ {print $4}')"
+# Extract the links from the response
+LINK=$(echo "$RESPONSE" | jq -r '.link')
+DELLINK=$(echo "$RESPONSE" | jq -r '.delete')
 
 # Copy the full link to the clipboard
 echo $LINK | xclip -selection clipboard
 
 # Notify the user
-notify-send "quick-capture-sharing@Odyssey" "File: $FILEPATH\nUploaded to: $LINK"
+notify-send "quick-capture-sharing@Odyssey" "File: $FILEPATH\nUploaded to: $LINK\nDeletion: $DELLINK"
 
