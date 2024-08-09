@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Define the directory and filename
-IMGDIR=$(xdg-user-dir PICTURES)
+# Define the folder and filename
+IMGDIR=$(xdg-user-dir PICTURES)/Screenshots/$(date +%Y-%m)
 DATE=$(date +%Y-%m-%d_%H-%M-%S)
 FILENAME="SCR_$DATE.png"
 FILEPATH="$IMGDIR/$FILENAME"
+
+# Create subfolder for current year-month if it does not exist
+mkdir -p $IMGDIR
 
 # Capture the screenshot
 gnome-screenshot -a -f $FILEPATH
@@ -20,8 +23,8 @@ DELLINK=$(echo "$RESPONSE" | jq -r '.delete')
 echo $LINK | xclip -selection clipboard
 
 # Save information in the applet history file
-echo -e "File: $FILEPATH\nLink: $LINK\nDeletionLink: $DELLINK\n\n" >> ~/.quick-screenshot-sharing.history
+echo -e "Folder: $IMGDIR\nFile: $FILENAME\nLink: $LINK\nDeletionLink: $DELLINK\n\n" >> ~/.quick-screenshot-sharing.history
 
 # Notify the user
-notify-send "quick-capture-sharing@Odyssey" "File: $FILEPATH\nUploaded to: $LINK\nDeletion: $DELLINK"
+notify-send "quick-capture-sharing@Odyssey" "Folder: $IMGDIR\nFile: $FILENAME\nUploaded to: $LINK\nDeletion: $DELLINK"
 

@@ -36,7 +36,7 @@ MyApplet.prototype = {
                 if (event.get_button() === 1)
                 {
                     const appletPath = imports.ui.appletManager.appletMeta[UUID].path;
-                    const scriptFile = `${appletPath}/kappalol`;
+                    const scriptFile = `${appletPath}/quick-screenshot`;
                     GLib.spawn_command_line_async(scriptFile);
                 }
             }
