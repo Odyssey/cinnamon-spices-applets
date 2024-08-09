@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Define the directory and filename
+IMGDIR=$(xdg-user-dir PICTURES)
+DATE=$(date +%Y-%m-%d_%H-%M-%S)
+FILENAME="SCR_$DATE.png"
+FILEPATH="$IMGDIR/$FILENAME"
+
+# Capture the screenshot
+gnome-screenshot -a -f $FILEPATH
+
+# Upload the file using curl
+RESPONSE=$(curl -s -F "file=@$FILEPATH" "https://kappa.lol/api/upload")
+
+# Extract the full link from the JSON response
+LINK=$RESPONSE | awk -F'"link": "|"' '{print $3}'
+
+# Copy the full link to the clipboard
+echo $LINK | xclip -selection clipboard
+
+# Notify the user
+notify-send "File: $FILEPATH. Uploaded: $LINK"
+

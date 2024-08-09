@@ -1,0 +1,7 @@
+{
+    "uuid": "quick-capture-sharing@Odyssey",
+    "name": "Quick capture sharing",
+    "description": "Click on the applet to make a screenshot of the selected region and immediately upload it. The resulting link will be copied to your clipboard. The file will also be saved in your ~/Pictures directory. Makes use of the packages 'xdg-user-dir', 'gnome-screenshot' and 'xclip'.",
+    "author": "Odyssey",
+    "last-edited": 1720142418
+}
