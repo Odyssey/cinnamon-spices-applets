@@ -19,6 +19,9 @@ DELLINK=$(echo "$RESPONSE" | jq -r '.delete')
 # Copy the full link to the clipboard
 echo $LINK | xclip -selection clipboard
 
+# Save information in the applet history file
+echo -e "File: $FILEPATH\nLink: $LINK\nDeletionLink: $DELLINK\n\n" >> ~/.quick-screenshot-sharing.history
+
 # Notify the user
 notify-send "quick-capture-sharing@Odyssey" "File: $FILEPATH\nUploaded to: $LINK\nDeletion: $DELLINK"
 
